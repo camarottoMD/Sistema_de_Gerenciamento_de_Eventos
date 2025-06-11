@@ -1,9 +1,9 @@
 from datetime import datetime
-from tkinter import *
+#from tkinter import *
 
 eventos = {}
 
-def entry_evento():
+"""def entry_evento():
     add_janela = Toplevel()
     
     nome_var = StringVar()
@@ -17,10 +17,10 @@ def entry_evento():
     data_entry = Entry(add_janela, textvariable=data_var).grid(column=1, row=1)
     
     Label(add_janela, text="Digite o tema do evento: ").grid(column=0, row=2)
-    tema_entry = Entry(add_janela, datetime=tema_var).grid(column=1, row=2)
+    tema_entry = Entry(add_janela, datetime=tema_var).grid(column=1, row=2)"""
 
 
-def salvar_evento():
+"""def salvar_evento():
     nome = nome_var.get() #get() captura o valor de nome_var
     data = data_var.get()
     tema = tema_var.get()
@@ -28,15 +28,15 @@ def salvar_evento():
     botao_addEvento = Button(add_janela, text='Adicionar evento', command=adicionar_evento).grid(column=0, row=3)#não pode colocar (), se naõ vou executar direto
     
     return add_janela, nome_entry, data_var, tema_var
-
+"""
 
 def adicionar_evento():
     
-    """
+
     nome_evento = input("Digite o nome do evento: ")
     data = input("Digite a data do evento (dd/mm/aaaa): ")
     tema = input("Digite o tema do evento: ")
-    """
+
 
     nome_evento = (
         nome_evento.strip().title()
