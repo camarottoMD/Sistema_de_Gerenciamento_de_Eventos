@@ -4,13 +4,31 @@ from tkinter import *
 eventos = {}
 
 def entry_evento():
-    add_evento_janela = Toplevel()
-    nome_evento = Entry(add_evento_janela, textvariable="Digite o nome do evento: ").grid(column=0, row=1)
-    data_evento = Entry(add_evento_janela, textvariable="Digite a data do evento: ").grid(column=0, row=2)
-    tema_evento = Entry(add_evento_janela, datetime="Digite o tema do evento: ").grid(column=0, row=3)
+    add_janela = Toplevel()
     
-    botao = Button(add_evento_janela, text='Adicionar evento', command=adicionar_evento)#não pode colocar (), se naõ vou executar direto
-    return add_evento_janela, nome_evento, data_evento, tema_evento
+    nome_var = StringVar()
+    data_var = StringVar() #todas definidas como variavel de str
+    tema_var = StringVar()
+    
+    Label(add_janela, text="Digite o nome do evento: ").grid(column=0, row=0)
+    nome_entry = Entry(add_janela, textvariable=nome_var).grid(column=1, row=0)
+    
+    Label(add_janela, text="Digite a data do evento: ").grid(column=0, row=1)
+    data_entry = Entry(add_janela, textvariable=data_var).grid(column=1, row=1)
+    
+    Label(add_janela, text="Digite o tema do evento: ").grid(column=0, row=2)
+    tema_entry = Entry(add_janela, datetime=tema_var).grid(column=1, row=2)
+
+
+def salvar_evento():
+    nome = nome_var.get() #get() captura o valor de nome_var
+    data = data_var.get()
+    tema = tema_var.get()
+    print(f"Nome: {nome}, Data: {data}, Tema: {tema}")
+    botao_addEvento = Button(add_janela, text='Adicionar evento', command=adicionar_evento).grid(column=0, row=3)#não pode colocar (), se naõ vou executar direto
+    
+    return add_janela, nome_entry, data_var, tema_var
+
 
 def adicionar_evento():
     
@@ -26,9 +44,9 @@ def adicionar_evento():
 
     # fazer tratamento de id de evento, porem se for fazer com banco ta de boa
     
-    tema = tema.strip().title()
+    tema = tema_entry.strip().title()
     data = datetime.strptime(
-        data,
+        data_entry,
         "%d/%m/%Y" #-> so a aceita nesse formato
     )  # strptime = string → data / strftime = data → string    #   $d->dia em numeral     %m-> mes em numeral     %Y-> ano completo em numeral
 
@@ -43,5 +61,3 @@ def criar_evento():
 
 def del_evento():
     ...
-    
-add_evento_janela.mainloop()
