@@ -60,4 +60,5 @@ def tratamento_var(nome, data, tema):
     return nome, data, tema
 
 def adicionar_evento(nome, data, tema):
-    eventos[nome] = {"data": data, "tema": tema}
+    #eventos = {nome:{"data": data , "tema": tema}}
+    [nome] = {"data": data, "tema": tema, "participantes": participantes}

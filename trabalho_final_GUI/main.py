@@ -19,5 +19,6 @@ botao_list = Button(window, text='Listar Eventos', command=listar_eventos)
 botao_list.grid(column=0, row=4)
 botao_exit = Button(window, text='Encerrar programa', command=exit)
 botao_exit.grid(column=0, row=6)
+
     
 window.mainloop()
