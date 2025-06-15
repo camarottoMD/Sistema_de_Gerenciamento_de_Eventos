@@ -5,7 +5,7 @@ from tkinter import ttk #utiliza widgets mais modernos
 eventos = {}
 
 
-def entry_evento():
+def entry_evento(test_mode=True):
     add_janela = Toplevel()
     add_janela.title('Novo Evento')
 
@@ -42,6 +42,13 @@ def entry_evento():
     botao_cria = Button(add_janela, text="Adicionar evento", command=salvar_evento)
     botao_cria.grid(column=0, row=6)
 
+        # --- Preenchimento automático para testes ---
+    if test_mode:
+        nome_var.set("Evento Teste")
+        data_var.set("14/06/2025")
+        tema_var.set("Teste Automático")
+        # Chama o salvar_evento automaticamente após 1 segundo
+        add_janela.after(1000, salvar_evento)
 
     return add_janela, nome_entry, data_var, tema_var
 
