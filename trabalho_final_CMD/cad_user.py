@@ -23,10 +23,9 @@ def adicionar_evento(test_mode=True):
             print(
                 f"O usuario '{nome}' não pode ser registrado! O nome '{nome}', já esta sendo utilizado"
             )
-        else:"""
-        """_summary_
-        verificação de nome duplicado para print do erro, pois o ID dos eventos são os nomes, e o dicionario
-        ja nao permite keys iguais
+        else:
+        
+        verificação de id duplicado em um mesmo
         """
 
     nome_user = (
@@ -41,4 +40,8 @@ def adicionar_evento(test_mode=True):
         "nome": nome,
         "email": email,
         "prefs": prefs
+        "eventos_inscrito": eventos_inscritos 
     }
+    """_summary_
+    preciso linkar os eventos com os participantes e vice versa, preciso mostrar quais eventos o participante esta inscrito
+    """

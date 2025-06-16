@@ -10,4 +10,7 @@ def listar_eventos():
         print(f"  Tema: {info['tema']}")
         print(f"  Participantes: {info['participantes']}")
         print("-" * 20)
-    
+        
+def opcao():
+    print("1 - Adicionar participante ao evento: ")
+    print("2 - Buscar participante: ")
