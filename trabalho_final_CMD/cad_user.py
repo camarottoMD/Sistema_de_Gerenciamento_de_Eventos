@@ -1,10 +1,9 @@
-from list_evento import *
-from add_evento import *
 import uuid
+import time 
 
-participante = dict() # == participante = {}
+participantes = dict() # == participante = {}
 
-def adicionar_evento(test_mode=True):
+def adicionar_participante(test_mode=True):
     if test_mode:
         nome_user_input = "Matheus"
         id_user = uuid.uuid4()
@@ -12,6 +11,7 @@ def adicionar_evento(test_mode=True):
         prefs_input = "Gosto de IA, culinaria e Anime"
 
         print(f"Preenchimento automático: {nome_user_input}, {id_user}, {email_input}, {prefs_input}")
+        time.sleep(3)
     else:
         nome_user_input = input("Digite o seu nome completo: ")
         id_user = uuid.uuid4()
@@ -37,7 +37,7 @@ def adicionar_evento(test_mode=True):
     prefs = prefs_input.strip().title()
 
     participantes[id_user] = {
-        "nome": nome,
+        "nome": nome_user,
         "email": email,
         "prefs": prefs
         "eventos_inscrito": eventos_inscritos 
