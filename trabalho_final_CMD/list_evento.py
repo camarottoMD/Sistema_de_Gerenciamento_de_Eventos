@@ -1,6 +1,6 @@
 from add_evento import eventos
-from cad_user import adicionar_participante
-from menu import *
+from cad_user import participantes
+from menu import menu
 from menu_evento import menuEvento
 
 def listar_eventos():
@@ -17,12 +17,13 @@ def listar_eventos():
         print(f"  Participantes: {info['participantes']}")
         print("-" * 20)
         opcaoList()
-
+        print(eventos)
 
 def escolhaEvento():
-    opcao_escolhaEvento = input("Escreva o nome do evento que você deseja visualizar: ")
-    eventoNome = opcao_escolhaEvento.strip().title()
-    if eventoNome in eventos:
+    #global eventoInput
+    eventoInput = input("Escreva o nome do evento que você deseja visualizar: ")
+    eventoInput = eventoInput.strip().title()
+    if eventoInput in eventos:
         menuEvento()
     
 """    for nome in eventos.keys():
@@ -40,10 +41,11 @@ def opcaoList():
     print("-" * 20)
 
     if escolhaOp_list == 1:
-        adicionar_participante()
-    elif escolhaOp_list == 2:
         pass
+    elif escolhaOp_list == 2:
+        escolhaEvento()
     elif escolhaOp_list == 3:
         menu()
-    elif escolhaOp_list == 4:
-        escolhaEvento()
+    else:
+        print("Essa opção não é válida!")
+        opcaoList()    

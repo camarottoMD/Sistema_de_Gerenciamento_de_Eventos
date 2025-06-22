@@ -3,7 +3,7 @@ import time
 
 eventos = {}
 
-def adicionar_evento(test_mode=True):
+def adicionar_evento(test_mode=False):
     if test_mode:
         nome_input = "Evento Teste"
         data_input = "15/06/2025"

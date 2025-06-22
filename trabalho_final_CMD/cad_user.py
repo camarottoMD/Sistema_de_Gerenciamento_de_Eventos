@@ -1,6 +1,7 @@
 import uuid
-import time 
-
+import time
+from list_evento import *
+from add_evento import eventos
 participantes = dict() # == participante = {}
 
 def adicionar_participante(test_mode=True):
@@ -18,30 +19,39 @@ def adicionar_participante(test_mode=True):
         email_input = input("Digite o seu email: ")
         prefs_input = input("Digite suas preferencias sobre temas de eventos: ")
 
-        """for nome in participante[nome].keys():
-        if nome_user_input == nome:
-            print(
-                f"O usuario '{nome}' não pode ser registrado! O nome '{nome}', já esta sendo utilizado"
-            )
-        else:
-        
-        verificação de id duplicado em um mesmo
-        """
+    """ for nome in participante[nome].keys():
+            if nome_user_input == nome:
+                print(
+                    f"O usuario '{nome}' não pode ser registrado! O nome '{nome}', já esta sendo utilizado"
+                )
+            else:"""
 
     nome_user = (
         nome_user_input.strip().title()
-    ) 
+    )
+
+    if nome_user in participantes:
+        print(f"O participante {nome_user}, já está participando deste evento.")
+    else:
     
-    email = email_input
+        email = email_input
 
-    prefs = prefs_input.strip().title()
+        prefs = prefs_input.strip().title()
 
-    participantes[id_user] = {
-        "nome": nome_user,
-        "email": email,
-        "prefs": prefs
-        "eventos_inscrito": eventos_inscritos 
-    }
-    """_summary_
-    preciso linkar os eventos com os participantes e vice versa, preciso mostrar quais eventos o participante esta inscrito
-    """
+########################################################################
+
+        if eventoInput in eventos:
+            eventoInscrito = eventos
+
+########################################################################
+
+
+        participantes[id_user] = {
+            "nome": nome_user,
+            "email": email,
+            "prefs": prefs,
+            "eventos_inscrito": eventoInscrito
+        }
+        """_summary_
+        preciso linkar os eventos com os participantes e vice versa, preciso mostrar quais eventos o participante esta inscrito
+        """
