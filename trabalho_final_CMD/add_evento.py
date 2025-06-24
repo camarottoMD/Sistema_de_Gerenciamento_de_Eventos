@@ -1,6 +1,19 @@
 from datetime import datetime
 import time 
 
+"""
+Vantagens de estar utilizando um dicionario global
+Busca rápida: Buscar por nome é instantâneo (O(1)).
+Código simples: Fácil de entender e manipular.
+Compartilhamento fácil: Qualquer função ou módulo pode acessar e modificar os eventos.
+
+-------------------------------------------------------------------------------------------------------------
+
+Esse método é eficiente e prático para programas pequenos e médios, onde o nome do evento pode ser único.
+Se precisar de nomes repetidos ou persistência, use lista de dicionários ou banco de dados.
+Para a maioria dos sistemas simples, o dicionário global é a escolha mais rápida e fácil!
+"""
+
 eventos = {}
 
 def adicionar_evento(test_mode=False):
@@ -58,7 +71,12 @@ def adicionar_evento(test_mode=False):
 
         eventos[nome_evento] = {
             "data": data,
-            "hora": hora,
+            "hora": hora,   #desta maneira eu não preciso percorrer as listas para remover ou editar qualquer tipo de evento
             "tema": tema,
             "participantes": [],
         }  # -> == eventos = {nome_evento: {"data": data, "tema": tema, "participantes": []}} isso seria a criacao do dic fora do def
+
+"""
+Em Python, variáveis globais (como eventos) podem ser lidas e modificadas dentro de funções, desde que você não tente reatribuir a variável (ex: eventos = {} dentro da função, o que criaria uma variável local).
+Quando você faz eventos[nome_evento] = ..., você está apenas modificando o conteúdo do dicionário global, não reatribuindo ele.
+"""
