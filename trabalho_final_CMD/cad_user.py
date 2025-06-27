@@ -1,10 +1,10 @@
 import uuid
 import time
-from list_evento import *
 from add_evento import eventos
+
 participantes = dict() # == participante = {}
 
-def adicionar_participante(test_mode=True):
+def adicionar_participante(nome, test_mode=True):
     if test_mode:
         nome_user_input = "Matheus"
         id_user = uuid.uuid4()
@@ -33,15 +33,15 @@ def adicionar_participante(test_mode=True):
     if nome_user in participantes:
         print(f"O participante {nome_user}, já está participando deste evento.")
     else:
-    
+        #fazer um tratamento pra reconhecer que é um email normal mesmo, talvez com biblioteca
         email = email_input
 
         prefs = prefs_input.strip().title()
 
 ########################################################################
 
-        if eventoInput in eventos:
-            eventoInscrito = eventos
+        """ if eventoInput in eventos:
+            eventoInscrito = eventos"""
 
 ########################################################################
 
@@ -50,8 +50,13 @@ def adicionar_participante(test_mode=True):
             "nome": nome_user,
             "email": email,
             "prefs": prefs,
-            "eventos_inscrito": eventoInscrito
+            #"eventos_inscrito": eventoInscrito
         }
+
+        eventos[nome]={
+            participantes[id_user]
+        }
+
         """_summary_
         preciso linkar os eventos com os participantes e vice versa, preciso mostrar quais eventos o participante esta inscrito
         """

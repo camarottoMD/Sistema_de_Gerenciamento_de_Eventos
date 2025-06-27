@@ -1,6 +1,6 @@
 import os
 from add_evento import adicionar_evento
-from list_evento import *
+from list_evento import listar_eventos
 
 def limpar_tela():
     os.system("cls" if os.name == 'nt' else 'clear')

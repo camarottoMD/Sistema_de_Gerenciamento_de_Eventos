@@ -1,6 +1,6 @@
 from add_evento import eventos
 from cad_user import participantes
-from menu import menu
+from menu import *
 from menu_evento import menuEvento
 
 def listar_eventos():

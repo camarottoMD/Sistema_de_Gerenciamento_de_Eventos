@@ -15,6 +15,7 @@ def listar_evento_unico():
         print(f"  Tema: {info['tema']}")
         print(f"  Participantes: {info['participantes']}")
         print("-" * 20)
+        return nome, info
 
 
 def menuEvento():
@@ -31,7 +32,7 @@ def opcaoMenu_evento():
         input("Selecione um número correspondente as opções acima: ")
     )
     if escolhaOp_evento == 1:
-        cad_user()
+        adicionar_participante(nome)
     elif escolhaOp_evento == 2:
         pass
     elif escolhaOp_evento == 3:

@@ -59,13 +59,18 @@ def adicionar_evento(test_mode=False):
     else:
 
         # fazer tratamento de id de evento, porem se for fazer com banco ta de boa
+        try: 
+            data = datetime.strptime(
+                data_input,
+                "%d/%m/%Y",  # -> so a aceita nesse formato
+            )  # strptime = string → data / strftime = data → string    #   $d->dia em numeral     %m-> mes em numeral     %Y-> ano completo em numeral
+        except ValueError:
+            print("Data com valor/formato incorreto! Adicione novamente")
 
-        data = datetime.strptime(
-            data_input,
-            "%d/%m/%Y",  # -> so a aceita nesse formato
-        )  # strptime = string → data / strftime = data → string    #   $d->dia em numeral     %m-> mes em numeral     %Y-> ano completo em numeral
-
-        hora = datetime.strptime(hora_input, "%H:%M")
+        try:
+            hora = datetime.strptime(hora_input, "%H:%M")
+        except ValueError:
+            print("Data com valor/formato incorreto! Adicione novamente")
 
         tema = tema_input.strip().title()
 
