@@ -1,5 +1,5 @@
 from datetime import datetime
-import time 
+import time
 
 """
 Vantagens de estar utilizando um dicionario global
@@ -25,29 +25,15 @@ def adicionar_evento(test_mode=False):
 
         print(f"Preenchimento automático: {nome_input}, {data_input}, {hora_input}, {tema_input} ")
         time.sleep(1)
+
+        """_summary_
+        verificação de nome duplicado para print do erro, pois o ID dos eventos são os nomes, e o dicionario
+        ja nao permite keys iguais
+        """
     else:
         nome_input = input("Digite o nome do evento: ")
-        data_input = input("Digite a data do evento (dd/mm/aaaa): ")
-        hora_input = input("Digite a hora do evento (hh:mm): ")
-        tema_input = input("Digite o tema do evento: ")
-    """
-    verificação de nome duplicado e exibição de mensagem
-    """
 
-
-    """_summary_
-    verificação de nome duplicado para print do erro, pois o ID dos eventos são os nomes, e o dicionario
-    ja nao permite keys iguais
-    """
-
-    """
-    cria o nome, faz a formatacao, e a partir disto, verifica se esse nome tem igual nos eventos
-    if nome_evento in eventos: já busca só nas chaves.
-    Não precisa escrever eventos.keys().
-    É mais simples e mais rápido assim!
-    Você não precisa especificar para o if procurar nas keys do dicionário porque, em Python, a expressão if chave in dicionario já faz a busca apenas nas chaves.
-    """
-    nome_evento = (
+        nome_evento = (
         nome_input.strip().title()
     )  # Remove espaços no fim e começo e coloca a primeira letra em maiúsculo
 
@@ -58,28 +44,43 @@ def adicionar_evento(test_mode=False):
 
     else:
 
-        # fazer tratamento de id de evento, porem se for fazer com banco ta de boa
-        try: 
+        data_input = input("Digite a data do evento (dd/mm/aaaa): ")
+        try:
             data = datetime.strptime(
                 data_input,
                 "%d/%m/%Y",  # -> so a aceita nesse formato
             )  # strptime = string → data / strftime = data → string    #   $d->dia em numeral     %m-> mes em numeral     %Y-> ano completo em numeral
         except ValueError:
             print("Data com valor/formato incorreto! Adicione novamente")
+        
+        hora_input = input("Digite a hora do evento (hh:mm): ")
 
         try:
             hora = datetime.strptime(hora_input, "%H:%M")
         except ValueError:
             print("Data com valor/formato incorreto! Adicione novamente")
 
+        tema_input = input("Digite o tema do evento: ")
         tema = tema_input.strip().title()
 
-        eventos[nome_evento] = {
-            "data": data,
-            "hora": hora,   #desta maneira eu não preciso percorrer as listas para remover ou editar qualquer tipo de evento
-            "tema": tema,
-            "participantes": [],
-        }  # -> == eventos = {nome_evento: {"data": data, "tema": tema, "participantes": []}} isso seria a criacao do dic fora do def
+
+    """
+    cria o nome, faz a formatacao, e a partir disto, verifica se esse nome tem igual nos eventos
+    if nome_evento in eventos: já busca só nas chaves.
+    Não precisa escrever eventos.keys().
+    É mais simples e mais rápido assim!
+    Você não precisa especificar para o if procurar nas keys do dicionário porque, em Python, a expressão if chave in dicionario já faz a busca apenas nas chaves.
+    """
+    
+
+    eventos[nome_evento] = {
+        "data": data,
+        "hora": hora,   #desta maneira eu não preciso percorrer as listas para remover ou editar qualquer tipo de evento
+        "tema": tema,
+        "participantes": [],
+    }  # -> == eventos = {nome_evento: {"data": data, "tema": tema, "participantes": []}} isso seria a criacao do dic fora do def
+
+    #tabelaLigacao =
 
 """
 Em Python, variáveis globais (como eventos) podem ser lidas e modificadas dentro de funções, desde que você não tente reatribuir a variável (ex: eventos = {} dentro da função, o que criaria uma variável local).

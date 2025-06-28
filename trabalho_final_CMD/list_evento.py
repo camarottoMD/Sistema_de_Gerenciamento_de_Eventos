@@ -20,12 +20,16 @@ def listar_eventos():
         print(eventos)
 
 def escolhaEvento():
-    #global eventoInput
-    eventoInput = input("Escreva o nome do evento que você deseja visualizar: ")
-    eventoInput = eventoInput.strip().title()
-    if eventoInput in eventos:
-        menuEvento()
-    
+    #global nomeEventoInput
+    while True:
+        nomeEventoInput = input("Escreva o nome do evento que você deseja visualizar: ")
+        nomeEventoInput = nomeEventoInput.strip().title()
+        if nomeEventoInput in eventos:
+            menuEvento(nomeEventoInput)
+            break
+        else:
+            print("Esse evento não existe!")
+            
 """    for nome in eventos.keys():
         if eventoNome == nome:
             print('Deu certo')"""

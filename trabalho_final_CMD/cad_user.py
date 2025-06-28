@@ -4,7 +4,7 @@ from add_evento import eventos
 
 participantes = dict() # == participante = {}
 
-def adicionar_participante(nome, test_mode=True):
+def adicionar_participante(nomeEventoInput, test_mode=True):
     if test_mode:
         nome_user_input = "Matheus"
         id_user = uuid.uuid4()
@@ -14,10 +14,12 @@ def adicionar_participante(nome, test_mode=True):
         print(f"Preenchimento automático: {nome_user_input}, {id_user}, {email_input}, {prefs_input}")
         time.sleep(3)
     else:
+        #talvez adicionar um botao para voltar campo
         nome_user_input = input("Digite o seu nome completo: ")
         id_user = uuid.uuid4()
         email_input = input("Digite o seu email: ")
         prefs_input = input("Digite suas preferencias sobre temas de eventos: ")
+
 
     """ for nome in participante[nome].keys():
             if nome_user_input == nome:
@@ -52,11 +54,14 @@ def adicionar_participante(nome, test_mode=True):
             "prefs": prefs,
             #"eventos_inscrito": eventoInscrito
         }
+#porque mesmo que isso esta aqui?
 
-        eventos[nome]={
-            participantes[id_user]
-        }
-
+        eventos[nomeEventoInput]["participantes"].append(participantes[id_user]) #tava fazendo o tratamento disso como dict, e era pra tratar como dicionario
         """_summary_
         preciso linkar os eventos com os participantes e vice versa, preciso mostrar quais eventos o participante esta inscrito
+        
+        Explicacao de como adicionar elementos em dicts
+        Para adicionar um novo campo: dicionario["nova_chave"] = valor
+        Para adicionar em uma lista dentro do dicionário: dicionario["chave_lista"].append(valor)
+        Nunca sobrescreva o dicionário inteiro se quiser apenas adicionar um elemento!
         """
