@@ -4,6 +4,7 @@ import os
 import add_evento
 import list_evento
 import manipulacao_user
+import menu_evento
 
 
 def limpar_tela():
@@ -77,9 +78,11 @@ def escolhaEvento():
         nomeEventoInput = input("Escreva o nome do evento que você deseja visualizar: ")
         nomeEventoInput = nomeEventoInput.strip().title()
         
-        if nomeEventoInput in manipulacao_user.eventos:
-            manipulacao_user.escolhaEvento(nomeEventoInput)
+        if nomeEventoInput in add_evento.eventos:
+            menu_evento.menuEvento(nomeEventoInput)
             break
         else:
             print("Esse evento não existe!")
     return nomeEventoInput
+
+########################################################SE NO MENU EU SELECIONAR LISTAGEM ELE VAI DIRETO PRA LISTAGEM, MESMO SEM LISTA

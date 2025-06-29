@@ -30,16 +30,16 @@ def menuEvento(nome):
         input("Selecione um número correspondente as opções acima: ")
     )
 
-    Opcao_Evento(opcao)
+    Opcao_Evento(opcao, nome)
 
 
 
-def Opcao_Evento(opcao):
+def Opcao_Evento(opcao, nome):
     if opcao == 1:
         adicionar_participante(nome)
     
     elif opcao == 2:
-        pass
+        return None
     
     elif opcao == 3:
         return #porque usar return

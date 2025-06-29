@@ -52,14 +52,16 @@ def adicionar_participante(nomeEventoInput, test_mode=True):
             "nome": nome_user,
             "email": email,
             "prefs": prefs,
-            "eventos_inscrito": ""
+            "eventos_inscrito": []
         }
-        participantes["eventos_inscrito"] = nomeEventoInput
+        participantes[id_user]["eventos_inscrito"].append(eventos[nomeEventoInput])
 
 
         # ARRUMAR !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-        
-        eventos[nomeEventoInput]["participantes"].append(participantes[id_user.values]) #tava fazendo o tratamento disso como dict, e era pra tratar como dicionario
+        print(eventos)
+        eventos[nomeEventoInput]["participantes"].append(participantes[id_user].values())
+        print(participantes)
+        #tava fazendo o tratamento disso como dict, e era pra tratar como dicionario
         """_summary_
         preciso linkar os eventos com os participantes e vice versa, preciso mostrar quais eventos o participante esta inscrito
         
@@ -68,3 +70,17 @@ def adicionar_participante(nomeEventoInput, test_mode=True):
         Para adicionar em uma lista dentro do dicionário: dicionario["chave_lista"].append(valor)
         Nunca sobrescreva o dicionário inteiro se quiser apenas adicionar um elemento!
         """
+
+
+"""
+class Participantes:
+    def __init__(self, nome, email, prefs, eventos_inscritos):
+        self.nome = nome
+        self.email = email
+        self.prefs = prefs
+        self.eventos_inscritos = eventos_inscritos
+
+
+class Evento:
+    def __init__(self, nome):
+        pass"""
