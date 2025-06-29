@@ -14,28 +14,38 @@ Se precisar de nomes repetidos ou persistência, use lista de dicionários ou ba
 Para a maioria dos sistemas simples, o dicionário global é a escolha mais rápida e fácil!
 """
 
-eventos = {}
+global eventos
+eventos = dict()
+global lista_tema
+lista_temas = list()
 
-def adicionar_evento(test_mode=False):
+def adicionar_evento(test_mode=True):
+
+    """    
+    isso ta inutilizavel
+    
     if test_mode:
-        nome_input = "Evento Teste"
-        data_input = "15/06/2025"
-        hora_input = "19:30"
-        tema_input = "Teste Automático"
+    nome_input = "Evento Teste"
+    data_input = "15/06/2025"
+    hora_input = "19:30"
+    tema_input = "Teste Automático"
 
-        print(f"Preenchimento automático: {nome_input}, {data_input}, {hora_input}, {tema_input} ")
-        time.sleep(1)
+    print(f"Preenchimento automático: {nome_input}, {data_input}, {hora_input}, {tema_input} ")
+    time.sleep(1)
 
-        """_summary_
-        verificação de nome duplicado para print do erro, pois o ID dos eventos são os nomes, e o dicionario
-        ja nao permite keys iguais
-        """
     else:
-        nome_input = input("Digite o nome do evento: ")
+    """
 
-        nome_evento = (
-        nome_input.strip().title()
-    )  # Remove espaços no fim e começo e coloca a primeira letra em maiúsculo
+    """_summary_
+    verificação de nome duplicado para print do erro, pois o ID dos eventos são os nomes, e o dicionario
+    ja nao permite keys iguais
+    """
+
+    nome_input = input("Digite o nome do evento: ")
+
+    nome_evento = (
+    nome_input.strip().title()
+)  # Remove espaços no fim e começo e coloca a primeira letra em maiúsculo
 
     if nome_evento in eventos:
         print(
@@ -43,25 +53,32 @@ def adicionar_evento(test_mode=False):
         )
 
     else:
+        while True:
+            try:
+                data_input = input("Digite a data do evento (dd/mm/aaaa): ")
+                data = datetime.strptime(
+                    data_input,
+                    "%d/%m/%Y",  # -> so a aceita nesse formato
+                )  # strptime = string → data / strftime = data → string    #   $d->dia em numeral     %m-> mes em numeral     %Y-> ano completo em numeral
+                break
+            except ValueError:
+                print("Data com valor/formato incorreto! Adicione novamente")
+        while True:
+            try:
+                hora_input = input("Digite a hora do evento (hh:mm): ")
+                hora = datetime.strptime(hora_input, "%H:%M")
+                break
+            except ValueError:
+                print("Data com valor/formato incorreto! Adicione novamente")
 
-        data_input = input("Digite a data do evento (dd/mm/aaaa): ")
-        try:
-            data = datetime.strptime(
-                data_input,
-                "%d/%m/%Y",  # -> so a aceita nesse formato
-            )  # strptime = string → data / strftime = data → string    #   $d->dia em numeral     %m-> mes em numeral     %Y-> ano completo em numeral
-        except ValueError:
-            print("Data com valor/formato incorreto! Adicione novamente")
-        
-        hora_input = input("Digite a hora do evento (hh:mm): ")
-
-        try:
-            hora = datetime.strptime(hora_input, "%H:%M")
-        except ValueError:
-            print("Data com valor/formato incorreto! Adicione novamente")
-
+        """
+        Colocando os temas em listas para poder manipular melhor na hora das estatisticas. Fazer uma aba de listagem de temas de  eventos tambem
+        """
         tema_input = input("Digite o tema do evento: ")
-        tema = tema_input.strip().title()
+        tema_input = tema_input.strip().title()
+        tema_existe = any(evento['tema'] == tema_input for evento in eventos.values()) # any vai pegar o primeiro valor que retornar true
+        if tema_existe not in eventos:
+            lista_temas.append(tema_existe)
 
 
     """
@@ -71,18 +88,18 @@ def adicionar_evento(test_mode=False):
     É mais simples e mais rápido assim!
     Você não precisa especificar para o if procurar nas keys do dicionário porque, em Python, a expressão if chave in dicionario já faz a busca apenas nas chaves.
     """
-    
+
 
     eventos[nome_evento] = {
         "data": data,
         "hora": hora,   #desta maneira eu não preciso percorrer as listas para remover ou editar qualquer tipo de evento
-        "tema": tema,
+        "tema": tema_existe,
         "participantes": [],
     }  # -> == eventos = {nome_evento: {"data": data, "tema": tema, "participantes": []}} isso seria a criacao do dic fora do def
 
     #tabelaLigacao =
 
-"""
-Em Python, variáveis globais (como eventos) podem ser lidas e modificadas dentro de funções, desde que você não tente reatribuir a variável (ex: eventos = {} dentro da função, o que criaria uma variável local).
-Quando você faz eventos[nome_evento] = ..., você está apenas modificando o conteúdo do dicionário global, não reatribuindo ele.
-"""
+    """
+    Em Python, variáveis globais (como eventos) podem ser lidas e modificadas dentro de funções, desde que você não tente reatribuir a variável (ex: eventos = {} dentro da função, o que criaria uma variável local).
+    Quando você faz eventos[nome_evento] = ..., você está apenas modificando o conteúdo do dicionário global, não reatribuindo ele.
+    """

@@ -37,7 +37,7 @@ def opcaoMenu_evento(nomeEventoInput):
     elif escolhaOp_evento == 2:
         pass
     elif escolhaOp_evento == 3:
-        exit() #usar return?
+        return #porque usar return
     else:
         print("Opção não válida!")
         menuEvento()

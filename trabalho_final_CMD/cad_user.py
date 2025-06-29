@@ -52,9 +52,8 @@ def adicionar_participante(nomeEventoInput, test_mode=True):
             "nome": nome_user,
             "email": email,
             "prefs": prefs,
-            #"eventos_inscrito": eventoInscrito
         }
-#porque mesmo que isso esta aqui?
+        participantes["eventos_inscrito"].append(nomeEventoInput)
 
         eventos[nomeEventoInput]["participantes"].append(participantes[id_user]) #tava fazendo o tratamento disso como dict, e era pra tratar como dicionario
         """_summary_
