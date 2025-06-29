@@ -52,10 +52,14 @@ def adicionar_participante(nomeEventoInput, test_mode=True):
             "nome": nome_user,
             "email": email,
             "prefs": prefs,
+            "eventos_inscrito": ""
         }
-        participantes["eventos_inscrito"].append(nomeEventoInput)
+        participantes["eventos_inscrito"] = nomeEventoInput
 
-        eventos[nomeEventoInput]["participantes"].append(participantes[id_user]) #tava fazendo o tratamento disso como dict, e era pra tratar como dicionario
+
+        # ARRUMAR !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        
+        eventos[nomeEventoInput]["participantes"].append(participantes[id_user.values]) #tava fazendo o tratamento disso como dict, e era pra tratar como dicionario
         """_summary_
         preciso linkar os eventos com os participantes e vice versa, preciso mostrar quais eventos o participante esta inscrito
         

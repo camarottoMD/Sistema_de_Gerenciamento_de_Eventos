@@ -19,25 +19,31 @@ def listar_evento_unico(nomeEventoInput):
     return nome, info
 
 
-def menuEvento(nomeEventoInput):
-    listar_evento_unico(nomeEventoInput)
+def menuEvento(nome):
+    listar_evento_unico(nome)
 
     print("1 - Adicionar participante")
     print("2 - Editar evento")
     print("3 - Voltar")
-    opcaoMenu_evento(nomeEventoInput)
 
-
-def opcaoMenu_evento(nomeEventoInput):
-    escolhaOp_evento = int(
+    opcao = int(
         input("Selecione um número correspondente as opções acima: ")
     )
-    if escolhaOp_evento == 1:
-        adicionar_participante(nomeEventoInput)
-    elif escolhaOp_evento == 2:
+
+    Opcao_Evento(opcao)
+
+
+
+def Opcao_Evento(opcao):
+    if opcao == 1:
+        adicionar_participante(nome)
+    
+    elif opcao == 2:
         pass
-    elif escolhaOp_evento == 3:
+    
+    elif opcao == 3:
         return #porque usar return
+    
     else:
         print("Opção não válida!")
         menuEvento()

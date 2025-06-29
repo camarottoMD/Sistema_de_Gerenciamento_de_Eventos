@@ -1,5 +1,5 @@
 from datetime import datetime
-import time
+
 
 """
 Vantagens de estar utilizando um dicionario global
@@ -13,11 +13,14 @@ Esse método é eficiente e prático para programas pequenos e médios, onde o n
 Se precisar de nomes repetidos ou persistência, use lista de dicionários ou banco de dados.
 Para a maioria dos sistemas simples, o dicionário global é a escolha mais rápida e fácil!
 """
-
+# Variaveis globais
 global eventos
-eventos = dict()
 global lista_tema
+
+# Memória
+eventos = dict()
 lista_temas = list()
+
 
 def adicionar_evento(test_mode=True):
 
@@ -40,46 +43,47 @@ def adicionar_evento(test_mode=True):
     verificação de nome duplicado para print do erro, pois o ID dos eventos são os nomes, e o dicionario
     ja nao permite keys iguais
     """
+    while True:
+        nome_input = input("Digite o nome do evento: ")
 
-    nome_input = input("Digite o nome do evento: ")
+        nome_evento = (
+        nome_input.strip().title()
+    )  # Remove espaços no fim e começo e coloca a primeira letra em maiúsculo
 
-    nome_evento = (
-    nome_input.strip().title()
-)  # Remove espaços no fim e começo e coloca a primeira letra em maiúsculo
+        if nome_evento in eventos:
+            print(
+                f"O evento '{nome_evento}' não pode ser registrado! O nome '{nome_evento}', já esta sendo utilizado"
+            )
+        else:
+            break
+        
+    while True:
+        try:
+            data_input = input("Digite a data do evento (dd/mm/aaaa): ")
+            data = datetime.strptime(
+                data_input,
+                "%d/%m/%Y",  # -> so a aceita nesse formato
+            )  # strptime = string → data / strftime = data → string    #   $d->dia em numeral     %m-> mes em numeral     %Y-> ano completo em numeral
+            break
+        except ValueError:
+            print("Data com valor/formato incorreto! Adicione novamente")
+    while True:
+        try:
+            hora_input = input("Digite a hora do evento (hh:mm): ")
+            hora = datetime.strptime(hora_input, "%H:%M")
+            break
+        except ValueError:
+            print("Data com valor/formato incorreto! Adicione novamente")
 
-    if nome_evento in eventos:
-        print(
-            f"O evento '{nome_evento}' não pode ser registrado! O nome '{nome_evento}', já esta sendo utilizado"
-        )
-
+    """
+    Colocando os temas em listas para poder manipular melhor na hora das estatisticas. Fazer uma aba de listagem de temas de  eventos tambem
+    """
+    tema_input = input("Digite o tema do evento: ")
+    tema_input = tema_input.strip().title()
+    if tema_input in eventos:
+        pass
     else:
-        while True:
-            try:
-                data_input = input("Digite a data do evento (dd/mm/aaaa): ")
-                data = datetime.strptime(
-                    data_input,
-                    "%d/%m/%Y",  # -> so a aceita nesse formato
-                )  # strptime = string → data / strftime = data → string    #   $d->dia em numeral     %m-> mes em numeral     %Y-> ano completo em numeral
-                break
-            except ValueError:
-                print("Data com valor/formato incorreto! Adicione novamente")
-        while True:
-            try:
-                hora_input = input("Digite a hora do evento (hh:mm): ")
-                hora = datetime.strptime(hora_input, "%H:%M")
-                break
-            except ValueError:
-                print("Data com valor/formato incorreto! Adicione novamente")
-
-        """
-        Colocando os temas em listas para poder manipular melhor na hora das estatisticas. Fazer uma aba de listagem de temas de  eventos tambem
-        """
-        tema_input = input("Digite o tema do evento: ")
-        tema_input = tema_input.strip().title()
-        tema_existe = any(evento['tema'] == tema_input for evento in eventos.values()) # any vai pegar o primeiro valor que retornar true
-        if tema_existe not in eventos:
-            lista_temas.append(tema_existe)
-
+        lista_temas.append(tema_input)
 
     """
     cria o nome, faz a formatacao, e a partir disto, verifica se esse nome tem igual nos eventos
@@ -93,7 +97,7 @@ def adicionar_evento(test_mode=True):
     eventos[nome_evento] = {
         "data": data,
         "hora": hora,   #desta maneira eu não preciso percorrer as listas para remover ou editar qualquer tipo de evento
-        "tema": tema_existe,
+        "tema": tema_input,
         "participantes": [],
     }  # -> == eventos = {nome_evento: {"data": data, "tema": tema, "participantes": []}} isso seria a criacao do dic fora do def
 
