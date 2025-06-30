@@ -1,9 +1,6 @@
 import os
-#from add_evento import adicionar_evento
-#from list_evento import listar_eventos, opcaoList
-import add_evento
-import list_evento
-import manipulacao_user
+import func_evento
+import func_user
 import menu_evento
 
 
@@ -20,57 +17,40 @@ def menu():
 
 
 def opcaoMenu(escolhaOp):
-    
-    if escolhaOp == 1:
-        list_evento.listar_eventos()
-        Menu_List()
-    
-    elif escolhaOp == 2:
-        add_evento.adicionar_evento()
-    
-    elif escolhaOp == 3:
-        exit()
-    
-    else: 
-        print("Opção não válida!")
-        menu()
-    print("-" * 20)
+    match escolhaOp:
+        case 1:
+            func_evento.listar_eventos()
+            Menu_List()
+        case 2:
+            func_evento.adicionar_evento()
+        case 3:    
+            exit()
+        case _:
+            print("Opção não válida!")
+            menu()
+            print("-" * 20)
 
 
 def Menu_List():
-    while True:
-        print("-" * 20)
-        print("1 - Buscar participante: ")
-        print("2 - Escolha um evento: ")
-        print("3 - Listar temas de eventos: ") #posso colocar talvez a quantidade de eventos naquele tema
-        print("4 - Voltar: ")
 
-        opcao = int(input("Selecione um número correspondente as opções acima: "))
-        print("-" * 20)
-        retorno = opcao_list(opcao)
-        
-        if retorno is not None:
-            break
+    print("-" * 20)
+    print("1 - Buscar participante: ")
+    print("2 - Escolha um evento: ")
+    print("3 - Listar temas de eventos: ") #posso colocar talvez a quantidade de eventos naquele tema
+    print("4 - Voltar: ")
 
+    opcao = int(input("Selecione um número correspondente as opções acima: "))
+    print("-" * 20)
 
-
-def opcao_list(opcao):
-    if opcao == 1:
-        manipulacao_user.buscarParticipante()
-    
-    elif opcao == 2:
-        escolhaEvento()
-    
-    elif opcao == 3:
-        list_evento.listar_temas()
-    
-    elif opcao == 4:
-        return ''
-    
-    else:
-        print("Essa opção não é válida!")
-        return None
-
+    match opcao: #pesquisar depois
+        case 1: 
+            func_user.buscarParticipante()
+        case 2:
+            escolhaEvento()
+        case 3:
+            func_evento.listar_temas()
+        case _:
+            print("opção inválida")
 
 def escolhaEvento():
     #global nomeEventoInput
@@ -78,7 +58,7 @@ def escolhaEvento():
         nomeEventoInput = input("Escreva o nome do evento que você deseja visualizar: ")
         nomeEventoInput = nomeEventoInput.strip().title()
         
-        if nomeEventoInput in add_evento.eventos:
+        if nomeEventoInput in func_evento.eventos:
             menu_evento.menuEvento(nomeEventoInput)
             break
         else:

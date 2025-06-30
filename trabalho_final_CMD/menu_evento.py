@@ -1,5 +1,5 @@
-from cad_user import *
-from add_evento import eventos
+from func_user import *
+from func_evento import *
 
 
 def listar_evento_unico(nomeEventoInput):
@@ -35,16 +35,15 @@ def menuEvento(nome):
 
 
 def Opcao_Evento(opcao, nome):
-    if opcao == 1:
-        adicionar_participante(nome)
+    match opcao:
+        case 1:
+            adicionar_participante(nome)
+        case 2:
+            editar_evento()
+        case 3:
+            return
     
-    elif opcao == 2:
-        return None
-    
-    elif opcao == 3:
-        return #porque usar return
-    
-    else:
-        print("Opção não válida!")
-        menuEvento()
-    print("-" * 20)
+        case _:
+            print("Opção não válida!")
+            menuEvento()
+            print("-" * 20)
