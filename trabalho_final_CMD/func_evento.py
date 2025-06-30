@@ -92,22 +92,41 @@ def editar_evento():
                 case "0":
                     break
                 case "1":
-                    evento_a_ser_editado = input("Digite o nome do evento a ser editado: ")
-                    if evento_a_ser_editado in eventos:
-                              
-                        while True:
-                            nome_editado = input("Digite o Novo Nome para o evento: ")
-                            if nome_editado in eventos:
-                                print("Evento com nome ({nome_editado}) já existe em Eventos!")
-                            else:
-                                eventos[nome_editado] = eventos[evento_a_ser_editado]
-                                del eventos[evento_a_ser_editado]
-                                print(nome_editado)
-                                break
+                    while True:
+                        if evento_a_ser_editado in eventos:
+                                
+                            while True:
+                                nome_editado = input("Digite o Novo Nome para o evento: ")
+                                if nome_editado in eventos:
+                                    print("Evento com nome ({nome_editado}) já existe em Eventos!")
+                                else:
+                                    eventos[nome_editado] = eventos[evento_a_ser_editado]
+                                    del eventos[evento_a_ser_editado]
+                                    print(nome_editado)
+                                    break
                         break
                 case "2":
-                    evento_a_ser_editado = input("Digite o nome do evento a ser editado: ")
-                    while True:
-                        data_editada_nova = datetime.strptime(input("Digite a nova data: "), "%d/%m/%Y")
-                        eventos[data_editada_nova] = eventos[evento_a_ser_editado]
-                        del eventos[evento_a_ser_editado]
+                    nova_data = input("Digite a nova data (dd/mm/aaaa): ")
+                    try:
+                        eventos[evento_a_ser_editado]["data"] = datetime.strptime(nova_data, "%d/%m/%Y")
+                        print("Data alterada com sucesso.")
+                    except Exception:
+                        print("Data inválida!")
+                    break
+                case "3":
+                    novo_tema = input("Digite o novo tema: ").strip().title()
+                    eventos[evento_a_ser_editado]["tema"] = novo_tema
+                    print("Tema alterado com sucesso.")
+                    break
+                case "4":
+                    novo_horario = input("Digite o novo horário (hh:mm): ")
+                    try:
+                        eventos[evento_a_ser_editado]["hora"] = datetime.strptime(novo_horario, "%H:%M")
+                        print("Horário alterado com sucesso.")
+                    except Exception:
+                        print("Horário inválido!")
+                    break
+                case _:
+                    print("Opção inválida.")
+        else:
+            print("Evento não encontrado.")
