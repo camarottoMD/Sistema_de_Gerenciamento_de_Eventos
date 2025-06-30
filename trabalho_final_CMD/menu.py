@@ -19,6 +19,10 @@ def menu():
 def opcaoMenu(escolhaOp):
     match escolhaOp:
         case 1:
+            if not func_evento.eventos:
+                print("Nenhum evento cadastrado!")
+                menu()
+                return
             func_evento.listar_eventos()
             Menu_List()
         case 2:
@@ -55,7 +59,7 @@ def Menu_List():
 def escolhaEvento():
     #global nomeEventoInput
     while True:
-        nomeEventoInput = input("Escreva o nome do evento que você deseja visualizar: ")
+        nomeEventoInput = input("Escreva o nome do evento que você deseja visualizar: ") #trocar para nomeEvento
         nomeEventoInput = nomeEventoInput.strip().title()
         
         if nomeEventoInput in func_evento.eventos:
@@ -64,5 +68,3 @@ def escolhaEvento():
         else:
             print("Esse evento não existe!")
     return nomeEventoInput
-
-########################################################SE NO MENU EU SELECIONAR LISTAGEM ELE VAI DIRETO PRA LISTAGEM, MESMO SEM LISTA

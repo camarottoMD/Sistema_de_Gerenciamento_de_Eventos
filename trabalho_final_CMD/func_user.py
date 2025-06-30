@@ -31,7 +31,6 @@ def adicionar_participante(nome_evento, test_mode=True):
         email = email_input
 
         prefs = prefs_input.strip().title()
-
         participantes[id_user] = {
             "nome": nome_user,
             "email": email,

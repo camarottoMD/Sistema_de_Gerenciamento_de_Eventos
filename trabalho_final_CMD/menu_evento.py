@@ -3,7 +3,7 @@ from func_evento import *
 
 def listar_evento_unico(nomeEventoInput):
     info = eventos[nomeEventoInput] 
-    nome = nomeEventoInput # por que aqui nao posso usar for, e porque nao posso acessar os items()
+    nome = nomeEventoInput
     print("-" * 20)
     print(f"Evento: {nome}")
     print(
@@ -18,7 +18,6 @@ def listar_evento_unico(nomeEventoInput):
 
 
 def menuEvento(nome):
-    evento_selecionado = listar_evento_unico(nome)
 
     print("1 - Adicionar participante")
     print("2 - Editar evento")
