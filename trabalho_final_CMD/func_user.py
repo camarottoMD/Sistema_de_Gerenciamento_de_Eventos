@@ -40,7 +40,8 @@ def adicionar_participante(nome_evento, test_mode=True):
         }
         participantes[id_user]["eventos_inscrito"].append(nome_evento)
 
-        eventos[nome_evento]["participantes"].append(participantes[id_user].values())
+        eventos[nome_evento]["participantes"].append(participantes[id_user]['nome'])
+        #fazer ele puxar os dados e jogar dentro do dicionario, porem quero fazer uma visualizacao mais botina - eventos[nome_evento]["participantes"].append(participantes[id_user].values())
 
         #tava fazendo o tratamento disso como dict, e era pra tratar como dicionario
         

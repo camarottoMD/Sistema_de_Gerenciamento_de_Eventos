@@ -1,7 +1,6 @@
 from func_user import *
 from func_evento import *
 
-
 def listar_evento_unico(nomeEventoInput):
     info = eventos[nomeEventoInput] 
     nome = nomeEventoInput # por que aqui nao posso usar for, e porque nao posso acessar os items()
