@@ -119,15 +119,15 @@ def editarInfosParticipante():
     opEdit = input('Insira uma das opcoes acima: ')
 
     match opEdit:
-        case 1:
+        case "1":
             novo_nome = input("Digite o novo nome: ").strip().title()
             participantes[id_editar]["nome"] = novo_nome
             print("Nome alterado com sucesso.")
-        case 2: 
+        case "2": 
             novo_email = input("Digite o novo email: ").strip()
             participantes[id_editar]["email"] = novo_email
             print("Email alterado com sucesso.")
-        case 3: 
+        case "3": 
             novas_prefs = input("Digite as novas preferências: ").strip().title()
             participantes[id_editar]["prefs"] = novas_prefs
             print("Preferências alteradas com sucesso.")
