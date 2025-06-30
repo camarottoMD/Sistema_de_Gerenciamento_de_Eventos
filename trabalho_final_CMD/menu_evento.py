@@ -16,11 +16,10 @@ def listar_evento_unico(nomeEventoInput):
     print(f"  Tema: {info['tema']}")
     print(f"  Participantes: {info['participantes']}")
     print("-" * 20)
-    return nome, info
 
 
 def menuEvento(nome):
-    listar_evento_unico(nome)
+    evento_selecionado = listar_evento_unico(nome)
 
     print("1 - Adicionar participante")
     print("2 - Editar evento")

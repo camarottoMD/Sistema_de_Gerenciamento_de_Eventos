@@ -86,7 +86,7 @@ def editar_evento():
         evento_a_ser_editado = input("Digite o nome do evento a ser editado: ")
         if evento_a_ser_editado in eventos:
             print("1 - Alterar nome\n2 - Alterar data\n3 - Alterar tema\n4 - Alterar horário\n")
-            opc_editar = input("Digite o nome do evento a ser editado (0 para sair): ")
+            opc_editar = input("Digite a opção a ser editada (0 para sair): ")
 
             match opc_editar:
                 case "0":
