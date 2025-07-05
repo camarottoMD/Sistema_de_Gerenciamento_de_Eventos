@@ -1,9 +1,9 @@
 from func_user import *
 from func_evento import *
 
-def listar_evento_unico(nomeEventoInput):
-    info = eventos[nomeEventoInput] 
-    nome = nomeEventoInput
+def listar_evento_unico(nome_evento):
+    info = eventos[nome_evento]
+    nome = nome_evento
     print("-" * 20)
     print(f"Evento: {nome}")
     print(
@@ -17,30 +17,43 @@ def listar_evento_unico(nomeEventoInput):
     print("-" * 20)
 
 
-def menuEvento(nome):
+def menuEvento(nome_evento):
 
-    print("1 - Adicionar participante")
-    print("2 - Editar evento")
-    print("3 - Voltar")
+    while True:
+        print("1 - Adicionar participante")
+        print("2 - Editar evento")
+        print("3 - Voltar")
+        try:
+            opcao = input("Selecione um número correspondente as opções acima: ")
+            if not opcao.isdigit():
+                print("Por favor, digite um número válido.")
+                continue
+            opcao = int(opcao)
+            Opcao_Evento(opcao, nome_evento)
+            break
+        except Exception as e:
+            print(f"Erro no menu do evento: {e}")
+            continue
 
-    opcao = int(
-        input("Selecione um número correspondente as opções acima: ")
-    )
-
-    Opcao_Evento(opcao, nome)
 
 
-
-def Opcao_Evento(opcao, nome):
-    match opcao:
-        case 1:
-            adicionar_participante(nome)
-        case 2:
-            editar_evento()
-        case 3:
+def Opcao_Evento(opcao, nome_evento):
+    try:
+        if opcao == 1:
+            try:
+                adicionar_participante(nome_evento)
+            except Exception as e:
+                print(f"Erro ao adicionar participante: {e}")
+        elif opcao == 2:
+            try:
+                editar_evento()
+            except Exception as e:
+                print(f"Erro ao editar evento: {e}")
+        elif opcao == 3:
             return
-    
-        case _:
+        else:
             print("Opção não válida!")
-            menuEvento()
+            menuEvento(nome_evento)
             print("-" * 20)
+    except Exception as e:
+        print(f"Erro na opção do evento: {e}")
